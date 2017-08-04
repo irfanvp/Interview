@@ -44,27 +44,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         requestQueue = Volley.newRequestQueue(MainActivity.this);
-      /*  tv_load= (TextView) findViewById(R.id.tv_load);
-        tv_load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                load();
-            }
-        });*/
-
-
         load();
 
-        //code test
     }
 
     public void load(){
         progressDialog=new ProgressDialog(MainActivity.this);
         progressDialog.show();
-
         url="https://openoffice.azurewebsites.net/api/shine";
-
-
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,url,
                 null,

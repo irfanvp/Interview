@@ -7,9 +7,9 @@ package com.app.interview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,10 +43,27 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.levelonerow, parent, false);
+        View view ;
 
-        return new MyViewHolder(itemView);
+        switch (viewType) {
+            case 1:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.levelonerow, parent, false);
+                return new MyViewHolder(view);
+            case 2:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.leveltwo, parent, false);
+                return new MyViewHolder(view);
+            case 3:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.levelthree, parent, false);
+                return new MyViewHolder(view);
+            case 4:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.levelfour, parent, false);
+                return new MyViewHolder(view);
+            case 5:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.levelfive, parent, false);
+                return new MyViewHolder(view);
+        }
+        return null;
+
     }
 
     @Override
@@ -66,5 +83,16 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return studentList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (studentList != null) {
+            Student object = studentList.get(position);
+            if (object != null) {
+                return Integer.parseInt(object.getLevel());
+            }
+        }
+        return 0;
     }
 }
