@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -22,25 +23,34 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     RequestQueue requestQueue;
     ProgressDialog progressDialog;
     String url="";
     TextView tv_load;
+
+    private List<Student> studentList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private StudentAdapter sAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         requestQueue = Volley.newRequestQueue(MainActivity.this);
-        tv_load= (TextView) findViewById(R.id.tv_load);
+      /*  tv_load= (TextView) findViewById(R.id.tv_load);
         tv_load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 load();
             }
-        });
+        });*/
 
+        load();
         //code test
     }
 
