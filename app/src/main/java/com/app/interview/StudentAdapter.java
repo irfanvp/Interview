@@ -7,9 +7,11 @@ package com.app.interview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,12 +44,39 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view ;
+    public MyViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        final View view ;
 
         switch (viewType) {
             case 1:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.levelonerow, parent, false);
+
+             /*   view.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+
+                    @Override
+                    public boolean onPreDraw() {
+                        final int type = viewType;
+                        final ViewGroup.LayoutParams lp = view.getLayoutParams();
+
+                            switch (type) {
+                                case 1:
+
+                                    lp.width = view.getWidth() / 2;
+                                    break;
+                            }
+                            view.setLayoutParams(lp);
+                            final RecyclerView.LayoutManager lm =
+                                    (RecyclerView.LayoutManager) ((RecyclerView) parent).getLayoutManager();
+                        //   lm.invalidateSpanAssignments();
+
+                        view.getViewTreeObserver().removeOnPreDrawListener(this);
+                        return true;
+                    }
+
+                });*/
+
+
                 return new MyViewHolder(view);
             case 2:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.leveltwo, parent, false);
