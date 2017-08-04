@@ -32,6 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_SCORE = "score";
     private static final String KEY_SlEVEL = "level";
+    private static final String KEY_IMAGE = "image";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_STUDENTS_TABLE = "CREATE TABLE " + TABLE_STUDENTS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_SCORE + " TEXT," + KEY_SlEVEL + " TEXT,"
+                + KEY_IMAGE + " TEXT"
                 + ")";
         db.execSQL(CREATE_STUDENTS_TABLE);
     }
@@ -66,6 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NAME, Student.getName()); // Student Name
         values.put(KEY_SCORE, Student.getScore()); // Student Phone
         values.put(KEY_SlEVEL, Student.getLevel());
+        values.put(KEY_IMAGE, Student.getImageurl());
         // Inserting Row
         db.insert(TABLE_STUDENTS, null, values);
         db.close(); // Closing database connection
@@ -99,6 +102,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return StudentList;
     }
 
-
+public void deletetable(){
+    SQLiteDatabase db = this.getWritableDatabase();
+    db.execSQL("DROP TABLE IF EXISTS "+TABLE_STUDENTS);
+}
 
 }

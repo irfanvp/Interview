@@ -10,6 +10,15 @@ public class Student {
     String score;
     String imageurl;
 
+
+   /* public Student(String name,String level,String score,String imageurl){
+        this.name=name;
+        this.level=level;
+        this.score=score;
+        this.imageurl=imageurl;
+
+    }*/
+
     public String getName() {
         return name;
     }
