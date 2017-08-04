@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+
         load();
+
         //code test
     }
 
@@ -81,11 +85,26 @@ public class MainActivity extends AppCompatActivity {
                                 String score = student.getString("score");
                                 String level = student.getString("level");
                                 String imageurl=student.getString("imageurl");
+                                Student s=new Student();
+                                s.setName(name);
+                                s.setScore(score);
+                                s.setLevel(level);
+                                s.setImageurl(imageurl);
+                                studentList.add(s);
 
                             }
                         }catch (JSONException e){
                             e.printStackTrace();
                         }
+
+                        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+                        sAdapter = new StudentAdapter(studentList,MainActivity.this);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        recyclerView.setLayoutManager(mLayoutManager);
+                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                        recyclerView.setAdapter(sAdapter);
+
+
                     }
                 },
                 new Response.ErrorListener(){
