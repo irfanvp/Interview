@@ -90,7 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 Student.setName(cursor.getString(1));
                 Student.setScore(cursor.getString(2));
                 Student.setLevel(cursor.getString(3));
-                // Adding Student to list
+                // /Adding Student to list
                 StudentList.add(Student);
             } while (cursor.moveToNext());
         }
